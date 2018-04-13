@@ -1,0 +1,106 @@
+html,body{
+    width: 100%;
+    height:100%;
+}
+.container-fluid{
+    padding: 0 150px;
+}
+.home{
+    background-image: url(assets/imgs/bg-rommanel.jpg);
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+.scroll{
+    height: auto;
+    overflow: scroll;
+    position: absolute;
+    top: 0;
+    left: 0; 
+}
+.box{
+    background: rgba(255,255,255,0.85);
+    border-radius: 5px;
+    padding: 60px 50px;
+}
+.box img{
+    margin-bottom: 20px;
+}
+.box p{
+    margin-bottom: 0px;
+    font-size: 22px;
+    font-family:'Helvetica Neue Light';
+    font-weight:normal;
+}
+.box p b{
+    font-family:'Helvetica Neue Medium';
+    font-weight:normal;
+}
+.form-inline{
+    display: inline-block;
+    margin: 5px 0;
+    width: 100%;
+}
+.form-inline label{
+    display: inline;
+    margin-right: 5px;
+    font-family:'Helvetica Neue Medium';
+    font-size: 22px;
+}
+.form-inline input,.form-inline input:focus{
+    font-family: 'Helvetica Neue Medium';
+    font-size: 22px;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    top: -10px;
+}
+button{
+    background: #644a89;
+    margin-top: 30px;
+    color: #fff;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue Medium';
+    border-radius: 10000px;
+    padding: 5px 20px;
+    font-size: 18px;
+}
+.video{
+    background: #644a89;
+    text-align: center;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+    left: -20px;
+    margin-top: 15%;
+}
+.video iframe{
+    float: left;
+    width: 100%;
+}
+.video button{
+    background: #4f396f;
+    margin: 10px 0;
+}
+@media screen and (max-width: 39.9375em) {
+    .home{
+        height: auto;
+        display: block;
+    }
+    .form-inline input,.form-inline input:focus,.form-inline label,.box p, button{
+        font-size: 16px;
+    }
+}
