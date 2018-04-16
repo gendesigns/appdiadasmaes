@@ -1,0 +1,26 @@
+<div class="cartao {{cartao}}">
+  <div class="box">
+    <div class="conteudo">
+      <img src="../assets/imgs/mae.png">
+      <p [innerHtml]="frase"></p>
+      <div class="form mt-3">
+        <div class="form-group row w-100">
+          <label class="col-sm-2 col-form-label">De:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row w-100">
+          <label class="col-sm-2 col-form-label">Para:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+      <button class="btn" routerLink="/cartao">Enviar Cartão</button>
+      <p class="logo-mobile">
+        <img src="assets/imgs/rommanel-black.png" class="logo-black" />
+      </p>
+    </div>
+  </div>
+</div>

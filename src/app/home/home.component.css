@@ -6,7 +6,6 @@ html,body{
     padding: 0 150px;
 }
 .home{
-    background-image: url(assets/imgs/bg-rommanel.jpg);
     position: relative;
     height: 100vh;
     width: 100%;
@@ -42,18 +41,17 @@ html,body{
     font-family:'Helvetica Neue Medium';
     font-weight:normal;
 }
-.form-inline{
-    display: inline-block;
-    margin: 5px 0;
-    width: 100%;
+.form-group{
+    margin: 5px auto;
 }
-.form-inline label{
-    display: inline;
-    margin-right: 5px;
+.form-group label{
     font-family:'Helvetica Neue Medium';
     font-size: 22px;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 0;
 }
-.form-inline input,.form-inline input:focus{
+.form-group input,.form-group input:focus{
     font-family: 'Helvetica Neue Medium';
     font-size: 22px;
     background: none;
@@ -64,7 +62,11 @@ html,body{
     border-left: none;
     border-right: none;
     position: relative;
-    top: -10px;
+    border-radius: 0;
+    padding: 0;
+    color: #000;
+    line-height: normal;
+    top: 5px;
 }
 button{
     background: #644a89;
@@ -95,12 +97,50 @@ button{
     background: #4f396f;
     margin: 10px 0;
 }
+.logo{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
 @media screen and (max-width: 39.9375em) {
     .home{
         height: auto;
         display: block;
     }
-    .form-inline input,.form-inline input:focus,.form-inline label,.box p, button{
+    .form-group input,.form-group input:focus,.form-group label,.box p, button{
         font-size: 16px;
+        text-align: center;
+    }
+    .container-fluid{
+        padding: 0 10px;
+        box-sizing: content-box;
+    }
+    .form-group {
+        width: 100% !important;
+    }
+    .form-group label{
+        text-align: center;
+    }
+    .video{
+        left: -10px;
+        margin-top: -10px;
+        padding: 0px;
+    }
+    .logo-mobile{
+        text-align: right;
+        padding: 10px;
+        margin:0;
+    }
+    .logo{
+        position: relative;
+        bottom: auto;
+        right: auto;
+        width: 100px;
+    }
+    .home{
+        overflow: hidden;
+    }
+    .box img{
+        width: calc(292px/2);
     }
 }

@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+.form-group{
+    margin: 5px auto;
+}
+.form-group label{
+    font-family:'Helvetica Neue Medium';
+    font-size: 22px;
+    text-align: right;
+    padding-left: 0;
+    padding-right: 0;
+}
+.form-group input,.form-group input:focus{
+    font-family: 'Helvetica Neue Medium';
+    font-size: 22px;
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    position: relative;
+    border-radius: 0;
+    padding: 0;
+    color: #000;
+    line-height: normal;
+    top: 5px;
+}
+button.btn{
+    background: #644a89;
+    margin-top: 30px;
+    color: #fff;
+    display: inline-block;
+    text-transform: uppercase;
+    font-family: 'Helvetica Neue Medium';
+    border-radius: 10000px;
+    padding: 5px 20px;
+    font-size: 18px;
+}
+.cartao1{
+    background-image: url("assets/imgs/bg-cartao-1.jpg");
+}
+.cartao2{
+    background-image: url("assets/imgs/bg-cartao-2.jpg");
+}
+.cartao3{
+    background-image: url("assets/imgs/bg-cartao-3.jpg");
+}
+.cartao4{
+    background-image: url("assets/imgs/bg-cartao-4.jpg");
+}
+.cartao5{
+    background-image: url("assets/imgs/bg-cartao-5.jpg");
+}
+.cartao .box{
+    background: url('assets/imgs/bg-cartao.png');
+}
+.home{
+    background-image: url("assets/imgs/bg-rommanel.jpg");
+}
+@media screen and (max-width: 39.9375em) {
+    .cartao .box{
+        background-image: url('assets/imgs/bg-cartao-mobile.png');
+    }
+}

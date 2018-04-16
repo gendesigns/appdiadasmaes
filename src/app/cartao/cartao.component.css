@@ -1,0 +1,87 @@
+.cartao{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover; 
+    background-attachment: fixed;
+}
+.box{
+    position: fixed;
+    right: 0;
+    max-width: 900px;
+    width: 100%;
+    top: 0;
+    min-height: 100%;
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.box .conteudo{
+    padding: 50px 100px;
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;  
+    position: relative;
+    height: 100vh; 
+    transform: rotate(3deg);
+}
+.box .conteudo p{
+    font-size: 30px;
+    font-family:'Helvetica Neue Light';
+}
+.box .conteudo img{
+    margin-bottom: 30px;
+}
+.logo-black{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -100px;
+}
+@media screen and (max-width: 39.9375em) {
+    .box{
+        background-size: cover;
+    }
+    .box .conteudo{
+        padding: 50px 10px;
+        transform: rotate(1deg);
+    }
+    .logo-black{
+        position: relative;
+        bottom: 50px;
+        left: 50%;
+        margin-left: -100px;
+    }
+    .box img{
+        width: calc(292px/2);
+    }
+    .box .conteudo p{
+        font-size: 20px;
+    }
+    .form-group input,.form-group input:focus,.form-group label,.box p, button{
+        font-size: 16px;
+        text-align: center;
+    }    
+    .form-group {
+        width: 100% !important;
+    }
+    .form-group label{
+        text-align: center;
+    }
+    .logo-mobile{
+        text-align: center;
+        padding: 10px;
+        margin:0;
+    }
+    .box img.logo-black{
+        width: 100px;
+        bottom: auto;
+        left: auto;
+        margin-left: auto;
+        margin-top: 30px;
+    }
+}
