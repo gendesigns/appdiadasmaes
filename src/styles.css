@@ -37,6 +37,9 @@ button.btn{
     padding: 5px 20px;
     font-size: 18px;
 }
+button.btn i{
+    margin-left: 5px;
+}
 .cartao1{
     background-image: url("assets/imgs/bg-cartao-1.jpg");
 }
