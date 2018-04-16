@@ -39,9 +39,56 @@
 .logo-black{
     margin-top: 30px;
 }
+.cartao.landscape .box{
+    background-size: cover;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-attachment: local;
+}
+.cartao.landscape .box .conteudo{
+    padding: 50px 100px;
+    transform: rotate(1deg);
+}
+.cartao.landscape .logo-black{
+    position: relative;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -100px;
+}
+.cartao.landscape .box img{
+    width: calc(292px/2);
+}
+.cartao.landscape .box .conteudo p{
+    font-size: 20px;
+}
+.cartao.landscape .form-group input,.form-group input:focus,.form-group label,.box p, button{
+    font-size: 16px;
+    text-align: center;
+}    
+.cartao.landscape .form-group {
+    width: 100% !important;
+}
+.cartao.landscape .form-group label{
+    text-align: center;
+}
+.cartao.landscape .logo-mobile{
+    text-align: center;
+    padding: 10px;
+    margin:0;
+}
+.cartao.landscape .box img.logo-black{
+    width: 100px;
+    bottom: auto;
+    left: auto;
+    margin-left: auto;
+    margin-top: 30px;
+}
 @media screen and (max-width: 39.9375em) {
     .box{
         background-size: cover;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-attachment: local;
     }
     .box .conteudo{
         padding: 50px 10px;

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare let $: any
+
 @Component({
   selector: 'app-cartao',
   templateUrl: './cartao.component.html',
@@ -29,6 +31,18 @@ export class CartaoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    function doOnOrientationChange() {
+      if (('ontouchstart' in document.documentElement)) {
+        if (screen.height < screen.width) {
+          $('.cartao').addClass('landscape');
+        } else if (('ontouchstart' in document.documentElement)) {
+          $('.cartao').removeClass('landscape');
+        }
+      }
+    }
+    window.addEventListener('orientationchange', doOnOrientationChange);
+    doOnOrientationChange();
+
     this.gerarCartao();
   }
 

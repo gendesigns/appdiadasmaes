@@ -102,6 +102,25 @@ button{
     bottom: 20px;
     right: 20px;
 }
+.home.landscape{
+    height: auto;
+}
+.home.landscape .logo-mobile{
+    text-align: right;
+    padding: 10px;
+    margin:0;
+}
+.home.landscape .logo{
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 100px;
+}
+.home.landscape .video{
+    left: auto;
+    margin-top: -10px;
+    padding: 0px;
+}
 @media screen and (max-width: 39.9375em) {
     .home{
         height: auto;
