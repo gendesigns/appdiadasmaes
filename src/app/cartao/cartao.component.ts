@@ -43,9 +43,23 @@ export class CartaoComponent implements OnInit {
     window.addEventListener('orientationchange', doOnOrientationChange);
     doOnOrientationChange();
 
+
+    $(document).on('click', '.btn-save', function () {
+      var classe = $("input[name=img]:checked").val();    
+      $('.cartao').removeClass('cartao1 cartao2 cartao3 cartao4 cartao5');
+      $('.cartao').addClass(classe);   
+      $('#trocar-bg').modal('hide');
+    })
+
     this.gerarCartao();
   }
 
+  trocarFrase(){
+    var numeroFrase = $("input[name=frase]:checked").val(); 
+    var fraseEscolhida = this.frases[numeroFrase]; 
+    this.frase = fraseEscolhida; 
+    $('#trocar-frase').modal('hide');
+  }
   gerarCartao() {
     var numeroFrase = Math.random();
     numeroFrase = Math.floor(numeroFrase * 3);

@@ -1,26 +1,127 @@
-<div class="cartao {{cartao}}">
-  <div class="box">
-    <div class="conteudo">
-      <img src="../assets/imgs/mae.png">
-      <p [innerHtml]="frase"></p>
-      <div class="form mt-3">
-        <div class="form-group row w-100">
-          <label class="col-sm-2 col-form-label">De:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control">
+<section class="bg-rommanel">
+  <div class="cartao {{cartao}}">
+    <div class="box">
+      <div class="conteudo">
+        <img src="../assets/imgs/mae-mini.png">
+        <p [innerHtml]="frase"></p>
+        <div class="form mt-3">
+          <div class="form-group row w-100">
+            <label class="col-sm-2 col-form-label">De:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="form-group row w-100">
+            <label class="col-sm-2 col-form-label">Para:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control">
+            </div>
           </div>
         </div>
-        <div class="form-group row w-100">
-          <label class="col-sm-2 col-form-label">Para:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control">
+        <p class="logo-mobile">
+          <img src="assets/imgs/rommanel-black.png" class="logo-black" />
+        </p>
+      </div>
+    </div>
+    <button class="btn push-left" data-toggle="modal" data-target="#trocar-bg" id="trocar-bg-btn">Trocar</button>
+    <button class="btn push-right" data-toggle="modal" data-target="#trocar-frase">Trocar</button>
+  </div>
+  <button class="btn" routerLink="/cartao">Enviar Cartão
+    <i class="fas fa-angle-double-right"></i>
+  </button>
+</section>
+<div class="modal" tabindex="-1" role="dialog" id="trocar-bg">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Imagem de fundo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="img1">
+              <input type="radio" name="img" id="img1" value="cartao1">
+              <img src="assets/imgs/bg-cartao-1.jpg" />
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label for="img2">
+              <input type="radio" name="img" id="img2" value="cartao2">
+              <img src="assets/imgs/bg-cartao-2.jpg" />
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label for="img3">
+              <input type="radio" name="img" id="img3" value="cartao3">
+              <img src="assets/imgs/bg-cartao-3.jpg" />
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label for="img4">
+              <input type="radio" name="img" id="img4" value="cartao4">
+              <img src="assets/imgs/bg-cartao-4.jpg" />
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label for="img5">
+              <input type="radio" name="img" id="img5" value="cartao5">
+              <img src="assets/imgs/bg-cartao-5.jpg" />
+            </label>
           </div>
         </div>
       </div>
-      <button class="btn" routerLink="/cartao">Enviar Cartão <i class="fas fa-angle-double-right"></i></button>
-      <p class="logo-mobile">
-        <img src="assets/imgs/rommanel-black.png" class="logo-black" />
-      </p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-save">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background:#ccc;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="trocar-frase">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Frase</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="0" id="frase0" name="frase">
+          <label class="form-check-label" for="frase0">
+            O amor de mãe não cabe no infinito, é a mais completa forma de amor.
+            <br> Mãe, você é o maior presente que a vida me deu.
+            <br>
+            <b>Feliz Dia das Mães!</b>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="1" id="frase1" name="frase">
+          <label class="form-check-label" for="frase1">
+            Você é a minha guerreira, me deu a vida e me ensinou a lutar por ela.
+            <br> Obrigada por estar presente em todos os momentos dos meus dias.
+            <br>
+            <b>Feliz Dia das Mães!</b>
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="2" id="frase2" name="frase">
+          <label class="form-check-label" for="frase2">
+            O seu dia é hoje, mas pode ser comemorado diariamente, afinal em todos os momentos especiais da minha vida você está presente.
+            <br>
+            <b>Feliz Dia das Mães!</b>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-save-frase" (click)="trocarFrase()">Salvar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background:#ccc;">Cancelar</button>
+      </div>
     </div>
   </div>
 </div>

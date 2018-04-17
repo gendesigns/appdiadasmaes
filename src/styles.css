@@ -61,6 +61,9 @@ button.btn i{
 .home{
     background-image: url("assets/imgs/bg-rommanel.jpg");
 }
+.bg-rommanel{
+    background-image: url("assets/imgs/bg-rommanel.png");
+}
 @media screen and (max-width: 39.9375em) {
     .cartao .box{
         background-image: url('assets/imgs/bg-cartao-mobile.png');
