@@ -27,7 +27,6 @@
     top: 5px;
 }
 button.btn{
-    background: #644a89;
     margin-top: 30px;
     color: #fff;
     display: inline-block;
@@ -36,6 +35,15 @@ button.btn{
     border-radius: 10000px;
     padding: 5px 20px;
     font-size: 18px;
+}
+button.btn-primary,
+button.btn-primary:hover,
+button.btn-primary:focus,
+button.btn-primary:active
+{
+    background: #644a89;
+    border-color: #644a89;
+    box-shadow: none;
 }
 button.btn i{
     margin-left: 5px;

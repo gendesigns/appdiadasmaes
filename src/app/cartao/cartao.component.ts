@@ -34,30 +34,32 @@ export class CartaoComponent implements OnInit {
     function doOnOrientationChange() {
       if (('ontouchstart' in document.documentElement)) {
         if (screen.height < screen.width) {
-          $('.cartao').addClass('landscape');
+          $('section').addClass('landscape');
         } else if (('ontouchstart' in document.documentElement)) {
-          $('.cartao').removeClass('landscape');
+          $('section').removeClass('landscape');
         }
       }
     }
     window.addEventListener('orientationchange', doOnOrientationChange);
     doOnOrientationChange();
 
-
-    $(document).on('click', '.btn-save', function () {
-      var classe = $("input[name=img]:checked").val();    
-      $('.cartao').removeClass('cartao1 cartao2 cartao3 cartao4 cartao5');
-      $('.cartao').addClass(classe);   
-      $('#trocar-bg').modal('hide');
-    })
-
     this.gerarCartao();
   }
 
+  trocarCartao(){
+    var numeroBgCartao = $("input[name=img]:checked").val(); 
+    if(numeroBgCartao){
+      var cartaoEscolhido = this.cartoes[numeroBgCartao]; 
+      this.cartao = cartaoEscolhido;
+    }
+    $('#trocar-bg').modal('hide');  
+  }
   trocarFrase(){
-    var numeroFrase = $("input[name=frase]:checked").val(); 
-    var fraseEscolhida = this.frases[numeroFrase]; 
-    this.frase = fraseEscolhida; 
+    var numeroFrase = $("input[name=frase]:checked").val();
+    if(numeroFrase){
+      var fraseEscolhida = this.frases[numeroFrase]; 
+      this.frase = fraseEscolhida; 
+    }
     $('#trocar-frase').modal('hide');
   }
   gerarCartao() {

@@ -15,7 +15,6 @@
     overflow: hidden;
     background-position: center;
     background-size: cover; 
-    background-attachment: fixed;
     position: relative;
 }
 .box{
@@ -35,7 +34,7 @@
     margin: 0 auto;  
     position: relative;
     transform: rotate(3deg);
-    padding: 30px 40px;
+    padding: 30px 70px;
 }
 .box .conteudo p{
     font-size: 16px;
@@ -48,7 +47,7 @@
     margin-top: 10px;
 }
 .form-group input,.form-group input:focus,.form-group label,.box p, button{
-    font-size: 16px;
+    font-size: 14px;
 }
 .cartao button{
     font-size: 10px;
@@ -69,6 +68,82 @@ img{
 }
 input[type=radio]:checked + img{
     border: 2px solid #664a90;
+}
+section.landscape .cartao{
+    width: 100%;
+    overflow-y: auto;
+    height: 100%;
+}
+section.landscape .cartao .btn{
+    position: fixed;
+}
+section.landscape .btn-enviar{
+    position: absolute;
+    bottom: 10px;
+    font-size: 10px;
+}
+.form-check{
+    margin-bottom: 20px;
+}
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 26px;
+    cursor: pointer;
+    line-height: 15px;
+    display: inline-block;
+    color: #4a4a4a;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #4a4a4a;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:before {
+    border: 5px solid #664a90;
+}
+@media screen and (max-width: 39.9375em) {
+    .cartao{
+        width: 100%;
+        border-radius: 5px;
+        overflow: auto;
+        background-position: center;
+        background-size: cover; 
+        position: relative;
+        height: 100%;
+    }
+    .bg-rommanel{
+        background-image: none;
+        background-position: center;
+    }
+    .bg-rommanel button.btn-enviar{
+        position: absolute;
+        bottom: 10px;
+        font-size: 10px;
+    }
+    .form-group label{
+        text-align: center;
+    }
+    .box .conteudo{
+        text-align: center;
+        margin: 0 auto;  
+        position: relative;
+        transform: rotate(2deg);
+        padding: 30px 50px;
+    }
 }
 /* .cartao{
     position: relative;
