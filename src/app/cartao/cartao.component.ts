@@ -6,7 +6,7 @@ import 'firebase/storage';
 import * as firebase from 'firebase'
 import { Observable } from 'rxjs/Rx'
 
-import { FacebookService, InitParams, UIParams,  UIResponse} from 'ngx-facebook';
+import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
 
 
 declare let $: any
@@ -43,14 +43,14 @@ export class CartaoComponent implements OnInit {
   public para;
   public image;
   public createdAt;
-  
+
   public titleLoader: string;
   public txtLoader: string;
 
   @Input() deInput
   @Input() paraInput
 
-  constructor(private fb: FacebookService) { 
+  constructor(private fb: FacebookService) {
     let initParams: InitParams = {
       appId: '315302218998864',
       xfbml: true,
@@ -62,7 +62,7 @@ export class CartaoComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     // this.titleLoader = 'Aguarde!'
     // this.txtLoader = 'Estamos preparando o link para Compartilhar.'
 
@@ -83,19 +83,19 @@ export class CartaoComponent implements OnInit {
     this.gerarCartao();
   }
 
-  trocarCartao(){
-    var numeroBgCartao = $("input[name=img]:checked").val(); 
-    if(numeroBgCartao){
-      var cartaoEscolhido = this.cartoes[numeroBgCartao]; 
+  trocarCartao() {
+    var numeroBgCartao = $("input[name=img]:checked").val();
+    if (numeroBgCartao) {
+      var cartaoEscolhido = this.cartoes[numeroBgCartao];
       this.cartao = cartaoEscolhido;
     }
-    $('#trocar-bg').modal('hide');  
+    $('#trocar-bg').modal('hide');
   }
-  trocarFrase(){
+  trocarFrase() {
     var numeroFrase = $("input[name=frase]:checked").val();
-    if(numeroFrase){
-      var fraseEscolhida = this.frases[numeroFrase]; 
-      this.frase = fraseEscolhida; 
+    if (numeroFrase) {
+      var fraseEscolhida = this.frases[numeroFrase];
+      this.frase = fraseEscolhida;
     }
     $('#trocar-frase').modal('hide');
   }
@@ -113,74 +113,74 @@ export class CartaoComponent implements OnInit {
   }
 
   enviarCartao() {
-          
+
     $('#trocar-bg-btn').remove();
     $('#trocar-frase-btn').remove();
     $('.bg-loader').css('display', 'block');
 
     this.titleLoader = 'Aguarde!'
     this.txtLoader = 'Estamos preparando o link para Compartilhar.'
-    
+
     html2canvas(document.querySelector('#cartao'))
-    .then((canvas) => {
-      
-      canvas.toBlob( blob =>{ 
-        let rash =  $('#de').val()+$('#para').val()+Date.now()
-        let de =  $('#de').val()
-        let para =  $('#para').val()
-        let createdAt = Date.now()
+      .then((canvas) => {
 
-        const storageRef = firebase.storage().ref();
-        const uploadTask = storageRef.child(`cartao/${btoa(rash)}`).put(blob);
+        canvas.toBlob(blob => {
+          let rash = $('#de').val() + $('#para').val() + Date.now()
+          let de = $('#de').val()
+          let para = $('#para').val()
+          let createdAt = Date.now()
 
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-          (snapshot: firebase.storage.UploadTaskSnapshot) =>  {
-            // upload in progress
-            const snap = snapshot;
-            let progress = (snap.bytesTransferred / snap.totalBytes) * 100
-            console.log('Progresso: ', progress)
-          },
-          (error) => {
-            // upload failed
-            console.log(error);
-          },
-          () => {
-            // upload success
-            
-            if (uploadTask.snapshot.downloadURL) {
-              let url = uploadTask.snapshot.downloadURL;
-              firebase.database().ref(`cartao/${btoa(rash)}`)
-              .set({de: de, para: para, imageUrl: url, shared: false,  createdAt: createdAt})
-              
-              this.shared(rash, url)
+          const storageRef = firebase.storage().ref();
+          const uploadTask = storageRef.child(`cartao/${btoa(rash)}`).put(blob);
 
-              return;
-            } else {
-              console.error('No download URL!');
-            }
-          },
-        );
-      }, 'image/jpeg', 0.95)
-      
-    })
-    .catch(err => {
-      // console.log("error canvas", err);
-    });
+          uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            (snapshot: firebase.storage.UploadTaskSnapshot) => {
+              // upload in progress
+              const snap = snapshot;
+              let progress = (snap.bytesTransferred / snap.totalBytes) * 100
+              console.log('Progresso: ', progress)
+            },
+            (error) => {
+              // upload failed
+              console.log(error);
+            },
+            () => {
+              // upload success
+
+              if (uploadTask.snapshot.downloadURL) {
+                let url = uploadTask.snapshot.downloadURL;
+                firebase.database().ref(`cartao/${btoa(rash)}`)
+                  .set({ de: de, para: para, imageUrl: url, shared: false, createdAt: createdAt })
+
+                this.shared(rash, url)
+
+                return;
+              } else {
+                console.error('No download URL!');
+              }
+            },
+          );
+        }, 'image/jpeg', 0.95)
+
+      })
+      .catch(err => {
+        // console.log("error canvas", err);
+      });
   }
 
 
-  public shared(rash: any, url:string): void {
+  public shared(rash: any, url: string): void {
     
     let params: UIParams = {
       href: url,
       message: 'Dia das Mães Rommanel',
       method: 'share'
     };
-  
+
     this.fb.ui(params)
       .then((res: UIResponse) => {
         firebase.database().ref(`cartao/${btoa(rash)}`)
-              .update({shared: true})
+          .update({ shared: true })
         this.titleLoader = 'Seu cartão foi compartilhado! :)'
         $('.btn-loader').css('display', 'block');
         this.txtLoader = ''

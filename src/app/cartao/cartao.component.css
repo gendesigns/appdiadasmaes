@@ -91,17 +91,6 @@
 .form-group input,.form-group input:focus,.form-group label,.box p, button{
     font-size: 14px;
 }
-.cartao button{
-    font-size: 10px;
-    position: absolute;
-    bottom: 10px;
-}
-.cartao button.push-left{
-    left: 10px;
-}
-.cartao button.push-right{
-    right: 10px;
-}
 img{
     max-width: 100%;
 }

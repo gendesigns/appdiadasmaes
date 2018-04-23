@@ -72,6 +72,17 @@ button.btn i{
 .bg-rommanel{
     background-image: url("assets/imgs/bg-rommanel.png");
 }
+.cartao button{
+    font-size: 10px;
+    position: absolute;
+    bottom: 10px;
+}
+.cartao button.push-left{
+    left: 10px;
+}
+.cartao button.push-right{
+    right: 10px;
+}
 @media screen and (max-width: 39.9375em) {
     .cartao .box{
         background-image: url('assets/imgs/bg-cartao-mobile.png');
