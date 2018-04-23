@@ -46,14 +46,18 @@ html,body{
 }
 .form-group label{
     font-family:'Helvetica Neue Medium';
-    font-size: 22px;
+    font-size: 15px;
+    font-style: italic;
     text-align: right;
     padding-left: 0;
     padding-right: 0;
 }
 .form-group input,.form-group input:focus{
     font-family: 'Helvetica Neue Medium';
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 100;
+    text-align: center;
+    text-transform: capitalize;
     background: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -64,7 +68,7 @@ html,body{
     position: relative;
     border-radius: 0;
     padding: 0;
-    color: #000;
+    color: #644a89;
     line-height: normal;
     top: 5px;
 }
@@ -138,7 +142,7 @@ button{
         width: 100% !important;
     }
     .form-group label{
-        text-align: center;
+        text-align: left;
     }
     .video{
         left: -10px;

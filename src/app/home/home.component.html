@@ -1,6 +1,7 @@
-<div class="home">
-  <div class="container-fluid">
-    <div class="row">
+<app-cartao [deInput]='deInput' [paraInput]='paraInput' [@cartao]="estadoCartao"></app-cartao>
+<div class="home" [@home]="estadoHome"> <!--home-->
+  <div class="container-fluid"> <!--container-fluid-->
+    <div class="row"> <!--row -->
       <div class="col-sm-12 col-md-7 box text-center">
         <img src="../assets/imgs/mae.png">
         <p>Dia das Mães é um momento único, perfeito para demonstrar nosso amor através de um abraço, uma lembrança, uma saudade
@@ -12,17 +13,17 @@
           <div class="form-group row w-50">
             <label class="col-sm-2 col-form-label">De:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" [(ngModel)]="deInput" required>
             </div>
           </div>
           <div class="form-group row w-50">
             <label class="col-sm-2 col-form-label">Para:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" [(ngModel)]="paraInput" required>
             </div>
           </div>
         </div>
-        <button class="btn" routerLink="/cartao">Enviar Cartão
+        <button class="btn" (click)='mostrarCartao()'>Criar Cartão
           <i class="fas fa-angle-double-right"></i>
         </button>
       </div>
@@ -37,9 +38,9 @@
           </button>
         </div>
       </div>
-    </div>
+    </div><!--row -->
     <p class="logo-mobile">
       <img src="assets/imgs/rommanel.png" class="logo" />
     </p>
-  </div>
-</div>
+  </div><!--container-fluid-->
+</div><!--home-->

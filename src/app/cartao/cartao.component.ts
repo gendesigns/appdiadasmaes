@@ -1,11 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import * as html2canvas from "html2canvas";
+import { Cartao } from './cartao.model';
+
+import 'firebase/storage';
+import * as firebase from 'firebase'
+import { Observable } from 'rxjs/Rx'
+
+import { FacebookService, InitParams, UIParams,  UIResponse} from 'ngx-facebook';
+
 
 declare let $: any
 
 @Component({
   selector: 'app-cartao',
   templateUrl: './cartao.component.html',
-  styleUrls: ['./cartao.component.css']
+  styleUrls: ['./cartao.component.css'],
 })
 export class CartaoComponent implements OnInit {
 
@@ -25,12 +34,40 @@ export class CartaoComponent implements OnInit {
   ];
   public cartoes = ['cartao1', 'cartao2', 'cartao3', 'cartao4', 'cartao5'];
 
+  public uploadPercent: Observable<number>;
+  public downloadURL: Observable<string>;
+
   public frase;
   public cartao;
+  public de;
+  public para;
+  public image;
+  public createdAt;
+  
+  public titleLoader: string;
+  public txtLoader: string;
 
-  constructor() { }
+  @Input() deInput
+  @Input() paraInput
+
+  constructor(private fb: FacebookService) { 
+    let initParams: InitParams = {
+      appId: '315302218998864',
+      xfbml: true,
+      version: 'v2.12'
+    };
+
+    fb.init(initParams);
+
+  }
 
   ngOnInit() {
+    
+    // this.titleLoader = 'Aguarde!'
+    // this.txtLoader = 'Estamos preparando o link para Compartilhar.'
+
+    this.createdAt = new Date()
+
     function doOnOrientationChange() {
       if (('ontouchstart' in document.documentElement)) {
         if (screen.height < screen.width) {
@@ -74,4 +111,85 @@ export class CartaoComponent implements OnInit {
     this.frase = fraseEscolhida;
     this.cartao = cartaoEscolhido;
   }
+
+  enviarCartao() {
+          
+    $('#trocar-bg-btn').remove();
+    $('#trocar-frase-btn').remove();
+    $('.bg-loader').css('display', 'block');
+
+    this.titleLoader = 'Aguarde!'
+    this.txtLoader = 'Estamos preparando o link para Compartilhar.'
+    
+    html2canvas(document.querySelector('#cartao'))
+    .then((canvas) => {
+      
+      canvas.toBlob( blob =>{ 
+        let rash =  $('#de').val()+$('#para').val()+Date.now()
+        let de =  $('#de').val()
+        let para =  $('#para').val()
+        let createdAt = Date.now()
+
+        const storageRef = firebase.storage().ref();
+        const uploadTask = storageRef.child(`cartao/${btoa(rash)}`).put(blob);
+
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot: firebase.storage.UploadTaskSnapshot) =>  {
+            // upload in progress
+            const snap = snapshot;
+            let progress = (snap.bytesTransferred / snap.totalBytes) * 100
+            console.log('Progresso: ', progress)
+          },
+          (error) => {
+            // upload failed
+            console.log(error);
+          },
+          () => {
+            // upload success
+            
+            if (uploadTask.snapshot.downloadURL) {
+              let url = uploadTask.snapshot.downloadURL;
+              firebase.database().ref(`cartao/${btoa(rash)}`)
+              .set({de: de, para: para, imageUrl: url, shared: false,  createdAt: createdAt})
+              
+              this.shared(rash, url)
+
+              return;
+            } else {
+              console.error('No download URL!');
+            }
+          },
+        );
+      }, 'image/jpeg', 0.95)
+      
+    })
+    .catch(err => {
+      // console.log("error canvas", err);
+    });
+  }
+
+
+  public shared(rash: any, url:string): void {
+    
+    let params: UIParams = {
+      href: url,
+      message: 'Dia das Mães Rommanel',
+      method: 'share'
+    };
+  
+    this.fb.ui(params)
+      .then((res: UIResponse) => {
+        firebase.database().ref(`cartao/${btoa(rash)}`)
+              .update({shared: true})
+        this.titleLoader = 'Seu cartão foi compartilhado! :)'
+        $('.btn-loader').css('display', 'block');
+        this.txtLoader = ''
+      })
+      .catch((e: any) => {
+        $('#btns-func').append('<button class="btn push-left btn-primary" data-toggle="modal" data-target="#trocar-bg" id="trocar-bg-btn">Trocar Imagem</button><button class="btn push-right btn-primary" data-toggle="modal" data-target="#trocar-frase" id="trocar-frase-btn">Trocar frase</button>');
+        $('.bg-loader').css('display', 'none');
+      });
+  }
+
+
 }

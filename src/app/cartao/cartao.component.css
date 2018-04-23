@@ -1,3 +1,41 @@
+.bg-loader{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(255,255,255, 0.8);
+}
+.bg-loader .content-loader {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+}
+.bg-loader .btn-loader {
+    width: 80px;
+    height: 25px;
+    display: none;
+    font-size: 11px;
+    line-height: 14px;
+    text-transform: uppercase;
+    border: none;
+    margin: 10px auto;
+    background: #644a89!important;
+}
+.bg-loader .txt-loader {
+    position: relative;
+    top: -33px;
+    width: 100%;
+}
+.bg-loader .txt-loader p{
+    font-size: 11px;
+    margin: 0;
+    text-align: center;
+}
 .bg-rommanel{
     position: absolute;
     height: 100%;
@@ -45,6 +83,10 @@
 }
 .logo-black{
     margin-top: 10px;
+}
+.form-group label{
+    font-size: 13px!important;
+    font-style: italic;
 }
 .form-group input,.form-group input:focus,.form-group label,.box p, button{
     font-size: 14px;
@@ -144,6 +186,16 @@ section.landscape .btn-enviar{
         transform: rotate(2deg);
         padding: 30px 50px;
     }
+}
+.form-control:disabled, .form-control[readonly]{
+    font-size: 15px!important;
+    background: transparent!important;
+    text-transform: capitalize;
+    color: #644a89;
+    text-align: center;
+}
+.displayNone {
+    display: none!important;
 }
 /* .cartao{
     position: relative;
