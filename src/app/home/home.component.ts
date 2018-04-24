@@ -10,20 +10,24 @@ declare let $: any
     trigger('home', [
       state('escondido', style({
         opacity: 0,
+        display:'none',
         'z-index': '-1'
       })),
       state('visivel', style({
         opacity: 1,
+        display:'flex',
         'z-index': '0'
       })),
       transition('escondido <=> visivel', animate('1s ease-in')),
     ]),
     trigger('cartao', [
       state('escondido', style({
-        opacity: 0
+        opacity: 0,
+        display:'none'
       })),
       state('visivel', style({
-        opacity: 1
+        opacity: 1,
+        display:'block'
       })),
       transition('escondido <=> visivel', animate('1s ease-in')),
     ])
