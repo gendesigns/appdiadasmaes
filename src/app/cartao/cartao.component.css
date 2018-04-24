@@ -1,3 +1,6 @@
+body{
+    min-width: 1024px !important;
+}
 .bg-loader{
     display: none;
     position: absolute;
@@ -35,6 +38,57 @@
     font-size: 11px;
     margin: 0;
     text-align: center;
+}
+.bg-loader .share-links{
+    text-align: center;
+}
+.bg-loader .share-links a{
+    display: inline-block;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.btn-link{
+    background: #1b7776 !important;
+}
+.btn-facebook{
+    background: #4768af !important;
+}
+.btn-whatsapp{
+    background: #63b141;
+    font-size: 18px !important;
+}
+.bg-loader .form-inline{
+    display: none;
+}
+.bg-loader .input-group-prepend {
+    height: 35px;
+}
+.bg-loader .input-group-text {
+    font-size: 14px;
+}
+.bg-loader input.form-control{
+    height: 35px;
+    line-height: normal;
+}
+.bg-loader button.btn.btn-primary.mb-2 {
+    margin: 0;
+    padding: 0;
+    height: 35px;
+    border-radius: 0;
+    width: 35px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.bg-loader i{
+    margin:0 !important;
 }
 .bg-rommanel{
     position: absolute;
@@ -147,6 +201,12 @@ section.landscape .btn-enviar{
     border: 5px solid #664a90;
 }
 @media screen and (max-width: 39.9375em) {
+    .bg-rommanel{
+        min-width: 1024px;
+        width: 100%;
+    }
+}
+/* @media screen and (max-width: 39.9375em) {
     .cartao{
         width: 100%;
         border-radius: 5px;
@@ -175,7 +235,7 @@ section.landscape .btn-enviar{
         transform: rotate(2deg);
         padding: 30px 50px;
     }
-}
+} */
 .form-control:disabled, .form-control[readonly]{
     font-size: 15px!important;
     background: transparent!important;
@@ -186,134 +246,3 @@ section.landscape .btn-enviar{
 .displayNone {
     display: none!important;
 }
-/* .cartao{
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-position: center;
-    background-size: cover; 
-    background-attachment: fixed;
-}
-.box{
-    position: fixed;
-    right: 0;
-    max-width: 900px;
-    width: 100%;
-    top: 0;
-    min-height: 100%;
-    background-position: bottom;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.box .conteudo{
-    padding: 50px 100px;
-    text-align: center;
-    max-width: 750px;
-    margin: 0 auto;  
-    position: relative;
-    height: 100vh; 
-    transform: rotate(3deg);
-}
-.box .conteudo p{
-    font-size: 30px;
-    font-family:'Helvetica Neue Light';
-}
-.box .conteudo img{
-    margin-bottom: 30px;
-}
-.logo-black{
-    margin-top: 30px;
-}
-.cartao.landscape .box{
-    background-size: cover;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-attachment: local;
-}
-.cartao.landscape .box .conteudo{
-    padding: 50px 100px;
-    transform: rotate(1deg);
-}
-.cartao.landscape .logo-black{
-    position: relative;
-    bottom: 50px;
-    left: 50%;
-    margin-left: -100px;
-}
-.cartao.landscape .box img{
-    width: calc(292px/2);
-}
-.cartao.landscape .box .conteudo p{
-    font-size: 20px;
-}
-.cartao.landscape .form-group input,.form-group input:focus,.form-group label,.box p, button{
-    font-size: 16px;
-    text-align: center;
-}    
-.cartao.landscape .form-group {
-    width: 100% !important;
-}
-.cartao.landscape .form-group label{
-    text-align: center;
-}
-.cartao.landscape .logo-mobile{
-    text-align: center;
-    padding: 10px;
-    margin:0;
-}
-.cartao.landscape .box img.logo-black{
-    width: 100px;
-    bottom: auto;
-    left: auto;
-    margin-left: auto;
-    margin-top: 30px;
-}
-@media screen and (max-width: 39.9375em) {
-    .box{
-        background-size: cover;
-        overflow-x: hidden;
-        overflow-y: auto;
-        background-attachment: local;
-    }
-    .box .conteudo{
-        padding: 50px 10px;
-        transform: rotate(1deg);
-    }
-    .logo-black{
-        position: relative;
-        bottom: 50px;
-        left: 50%;
-        margin-left: -100px;
-    }
-    .box img{
-        width: calc(292px/2);
-    }
-    .box .conteudo p{
-        font-size: 20px;
-    }
-    .form-group input,.form-group input:focus,.form-group label,.box p, button{
-        font-size: 16px;
-        text-align: center;
-    }    
-    .form-group {
-        width: 100% !important;
-    }
-    .form-group label{
-        text-align: center;
-    }
-    .logo-mobile{
-        text-align: center;
-        padding: 10px;
-        margin:0;
-    }
-    .box img.logo-black{
-        width: 100px;
-        bottom: auto;
-        left: auto;
-        margin-left: auto;
-        margin-top: 30px;
-    }
-} */

@@ -2,47 +2,72 @@
   <div class="content-loader">
     <img src="assets/imgs/Heart-1s-200px.gif" class="heart-loader">
     <div class="txt-loader">
-      <p><b>{{ titleLoader }}</b></p>
-      <p>{{ txtLoader }}</p> 
-      <p><a href="/" class="btn push-left btn-primary btn-loader">Voltar</a></p>
+     <!--  <p>
+        <b>{{ titleLoader }}</b>
+      </p>
+      <p>{{ txtLoader }}</p> -->
+      <div class="share-links">
+        <a class="btn btn-link" (click)="openForm()">
+          <i class="fas fa-link"></i>
+        </a>
+        <a href="#" target="_blank" class="btn btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://web.whatsapp.com/send?text=O%20que%20voc%C3%AA%20acha%3F%20https%3A%2F%2Fpin.it%2Fnledssuotwzelz" target="_blank"
+          class="btn btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="form-inline">
+          <div class="input-group mb-2 mr-sm-2">
+           <!--  <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fas fa-link"></i>
+              </div>
+            </div> -->
+            <input type="text" class="form-control" value="copiar este link" id="share-link">
+            <button class="btn btn-primary mb-2" (click)="copyLink()"><i class="fas fa-link"></i></button>
+          </div>
+        </div>
+      </div>
+      <p>
+        <a href="/" class="btn push-left btn-primary btn-loader">Voltar</a>
+      </p>
     </div>
   </div>
 </div>
 <section class="bg-rommanel">
-    <div id="cartao" class="cartao {{cartao}}">
-      <div class="box">
-        <div class="conteudo">
-          <img src="../assets/imgs/mae-mini.png">
-          <p [innerHtml]="frase"></p>
-          <div class="form mt-3">
-            <div class="form-group row w-100">
-              <label class="col-sm-2 col-form-label">De:</label>
-              <div class="col-sm-10">
-                <input type="text" id="de" class="form-control" value="{{deInput}}" disabled>
-              </div>
-            </div>
-            <div class="form-group row w-100">
-              <label class="col-sm-2 col-form-label">Para:</label>
-              <div class="col-sm-10">
-                <input type="text" id="para" class="form-control" value="{{paraInput}}" disabled>
-              </div>
+  <div id="cartao" class="cartao {{cartao}}">
+    <div class="box">
+      <div class="conteudo">
+        <img src="../assets/imgs/mae-mini.png">
+        <p [innerHtml]="frase"></p>
+        <div class="form mt-3">
+          <div class="form-group row w-100">
+            <label class="col-sm-2 col-form-label">De:</label>
+            <div class="col-sm-10">
+              <input type="text" id="de" class="form-control" value="{{deInput}}" disabled>
             </div>
           </div>
-          <p class="logo-mobile">
-            <img src="assets/imgs/rommanel-black.png" class="logo-black" />
-          </p>
+          <div class="form-group row w-100">
+            <label class="col-sm-2 col-form-label">Para:</label>
+            <div class="col-sm-10">
+              <input type="text" id="para" class="form-control" value="{{paraInput}}" disabled>
+            </div>
+          </div>
         </div>
-      </div>
-      <div id="btns-func">
-        <button class="btn push-left btn-primary" data-toggle="modal" data-target="#trocar-bg" id="trocar-bg-btn">Trocar Imagem</button>
-        <button class="btn push-right btn-primary" data-toggle="modal" data-target="#trocar-frase" id="trocar-frase-btn">Trocar frase</button>
+        <p class="logo-mobile">
+          <img src="assets/imgs/rommanel-black.png" class="logo-black" />
+        </p>
       </div>
     </div>
-    <button class="btn btn-enviar btn-primary" (click)="enviarCartao()">Compartilhar Cartão
-      <i class="fas fa-angle-double-right"></i>
-    </button>
-    <a href="https://web.whatsapp.com/send?text=O%20que%20voc%C3%AA%20acha%3F%20https%3A%2F%2Fpin.it%2Fnledssuotwzelz" target="_blank" class="btn btn-enviar btn-primary">WhatsApp</a>
-    
+    <div id="btns-func">
+      <button class="btn push-left btn-primary" data-toggle="modal" data-target="#trocar-bg" id="trocar-bg-btn">Trocar Imagem</button>
+      <button class="btn push-right btn-primary" data-toggle="modal" data-target="#trocar-frase" id="trocar-frase-btn">Trocar frase</button>
+    </div>
+  </div>
+  <button class="btn btn-enviar btn-primary" (click)="enviarCartao()">Compartilhar Cartão
+    <i class="fas fa-angle-double-right"></i>
+  </button>
 </section>
 
 <div class="modal" tabindex="-1" role="dialog" id="trocar-bg">
