@@ -7,6 +7,14 @@ export const FirebaseConfig = {
     projectId: "appmaesrommanel",
     storageBucket: "appmaesrommanel.appspot.com",
     messagingSenderId: "1009997185157"
+
+    // CREDENCIAIS DE PRODUÇÃO
+    // apiKey: "AIzaSyC1UbdwP6yw3Efe7iEffw3fl49IAxiYiKM",
+    // authDomain: "appmaesrommanel-bbf3b.firebaseapp.com",
+    // databaseURL: "https://appmaesrommanel-bbf3b.firebaseio.com",
+    // projectId: "appmaesrommanel-bbf3b",
+    // storageBucket: "appmaesrommanel-bbf3b.appspot.com",
+    // messagingSenderId: "436487903065"
       
 };
     

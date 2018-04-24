@@ -160,7 +160,7 @@ export class CartaoComponent implements OnInit {
               }
             },
           );
-        }, 'image/jpeg', 0.95)
+         }, 'image/jpeg', 0.95)
 
       })
       .catch(err => {
@@ -172,7 +172,7 @@ export class CartaoComponent implements OnInit {
   public shared(rash: any, url: string): void {
     
     let params: UIParams = {
-      href: url,
+      href: 'http://mensagens.culturamix.com/blog/wp-content/gallery/frases-para-cartao-de-amor-1/frases-para-cartao-de-amor-1.jpg',
       message: 'Dia das Mães Rommanel',
       method: 'share'
     };
