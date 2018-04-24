@@ -83,6 +83,10 @@ button{
     padding: 5px 20px;
     font-size: 18px;
 }
+.home .col-md-5{
+    display: flex;
+    align-items: center;
+}
 .video{
     background: #644a89;
     text-align: center;
@@ -91,7 +95,7 @@ button{
     overflow: hidden;
     width: 100%;
     left: -20px;
-    margin-top: 15%;
+    /* margin-top: 15%; */
 }
 .video iframe{
     float: left;
