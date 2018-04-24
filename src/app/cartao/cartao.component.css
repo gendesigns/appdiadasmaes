@@ -102,7 +102,7 @@ body{
     flex-direction: column;
 }
 .cartao{
-    width: 50%;
+    width: 730px;
     border-radius: 5px;
     overflow: hidden;
     background-position: center;
@@ -199,6 +199,10 @@ section.landscape .btn-enviar{
 }
 [type="radio"]:checked + label:before {
     border: 5px solid #664a90;
+}
+.bg-rommanel{
+    min-width: 1024px;
+    width: 100%;
 }
 @media screen and (max-width: 39.9375em) {
     .bg-rommanel{
