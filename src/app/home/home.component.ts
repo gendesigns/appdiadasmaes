@@ -35,8 +35,6 @@ declare let $: any
 })
 export class HomeComponent implements OnInit {
 
-  public path_image = 'assets/imgs/bg-cartao-1.jpg'
-
   public estadoHome: string = 'visivel'
   public estadoCartao: string = 'escondido'
 

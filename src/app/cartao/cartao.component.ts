@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
 import * as html2canvas from "html2canvas";
 import { Cartao } from './cartao.model';
 
@@ -15,6 +15,21 @@ declare let $: any
   selector: 'app-cartao',
   templateUrl: './cartao.component.html',
   styleUrls: ['./cartao.component.css'],
+  animations: [
+    trigger('shareLinks', [
+      state('escondido', style({
+        opacity: 0,
+        display:'none',
+        'z-index': '-1'
+      })),
+      state('visivel', style({
+        opacity: 1,
+        display:'flex',
+        'z-index': '0'
+      })),
+      transition('escondido <=> visivel', animate('1s ease-in')),
+    ]),
+  ]
 })
 export class CartaoComponent implements OnInit {
 
@@ -37,6 +52,8 @@ export class CartaoComponent implements OnInit {
   public uploadPercent: Observable<number>;
   public downloadURL: Observable<string>;
 
+  public stateShareLinks: string = 'escondido'
+
   public frase;
   public cartao;
   public de;
@@ -46,6 +63,8 @@ export class CartaoComponent implements OnInit {
 
   public titleLoader: string;
   public txtLoader: string;
+  public hash: string
+  public url: string
 
   @Input() deInput
   @Input() paraInput
@@ -62,9 +81,6 @@ export class CartaoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // this.titleLoader = 'Aguarde!'
-    // this.txtLoader = 'Estamos preparando o link para Compartilhar.'
 
     this.createdAt = new Date()
 
@@ -118,20 +134,20 @@ export class CartaoComponent implements OnInit {
     $('#trocar-frase-btn').remove();
     $('.bg-loader').css('display', 'block');
 
-    this.titleLoader = 'Aguarde!'
-    this.txtLoader = 'Estamos preparando o link para Compartilhar.'
-
+    this.titleLoader = 'Aguarde...'
+    this.txtLoader = 'O seu cartão está sendo criado com carinho.'
+    
     html2canvas(document.querySelector('#cartao'))
       .then((canvas) => {
 
         canvas.toBlob(blob => {
-          let rash = $('#de').val() + $('#para').val() + Date.now()
+          let hash = $('#de').val() + $('#para').val() + Date.now()
           let de = $('#de').val()
           let para = $('#para').val()
           let createdAt = Date.now()
 
           const storageRef = firebase.storage().ref();
-          const uploadTask = storageRef.child(`cartao/${btoa(rash)}`).put(blob);
+          const uploadTask = storageRef.child(`cartao/${btoa(hash)}`).put(blob);
 
           uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
             (snapshot: firebase.storage.UploadTaskSnapshot) => {
@@ -149,10 +165,17 @@ export class CartaoComponent implements OnInit {
 
               if (uploadTask.snapshot.downloadURL) {
                 let url = uploadTask.snapshot.downloadURL;
-                firebase.database().ref(`cartao/${btoa(rash)}`)
-                  .set({ de: de, para: para, imageUrl: url, shared: false, createdAt: createdAt })
+                firebase.database().ref(`cartao/${btoa(hash)}`)
+                  .set({ de: de, para: para, imageUrl: url,  shareFacebook: false, shareWhatsApp: false, shareCopyLink: false,  createdAt: createdAt })
+                  
 
-                this.shared(rash, url)
+                  this.titleLoader = 'Prontinho! :)'
+                  this.txtLoader = 'Agora você já pode compartilhar o seu cartão.'
+
+                  this.hash = hash
+                  this.url = url
+                  
+                  this.stateShareLinks = 'visivel'
 
                 return;
               } else {
@@ -169,32 +192,38 @@ export class CartaoComponent implements OnInit {
   }
 
 
-  public shared(rash: any, url: string): void {
+  public shareFb() {
+    
+    console.log('Hash', this.hash)
+    console.log('Url', this.url)
 
     let params: UIParams = {
-      href: 'http://mensagens.culturamix.com/blog/wp-content/gallery/frases-para-cartao-de-amor-1/frases-para-cartao-de-amor-1.jpg',
-      message: 'Dia das Mães Rommanel',
+      href: this.url,
       method: 'share'
     };
 
     this.fb.ui(params)
       .then((res: UIResponse) => {
-        firebase.database().ref(`cartao/${btoa(rash)}`)
-          .update({ shared: true })
-        this.titleLoader = 'Seu cartão foi compartilhado! :)'
-        $('.btn-loader').css('display', 'block');
-        this.txtLoader = ''
+        firebase.database().ref(`cartao/${btoa(this.hash)}`)
+          .update({ shareFacebook: true })
       })
       .catch((e: any) => {
         $('#btns-func').append('<button class="btn push-left btn-primary" data-toggle="modal" data-target="#trocar-bg" id="trocar-bg-btn">Trocar Imagem</button><button class="btn push-right btn-primary" data-toggle="modal" data-target="#trocar-frase" id="trocar-frase-btn">Trocar frase</button>');
-        $('.bg-loader').css('display', 'none');
+        // $('.bg-loader').css('display', 'none');
       });
+  }
+
+  public shareWhatsApp() {
+    firebase.database().ref(`cartao/${btoa(this.hash)}`)
+      .update({ shareWhatsApp: true})
   }
 
   openForm() {
     $('.bg-loader .form-inline').toggle('slow');
   }
   copyLink() {
+    firebase.database().ref(`cartao/${btoa(this.hash)}`)
+      .update({ shareCopyLink: true })
     $('#share-link').focus();
     $('#share-link').select();
     document.execCommand('copy');
