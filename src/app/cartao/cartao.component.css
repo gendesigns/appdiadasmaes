@@ -242,7 +242,7 @@ section.landscape .btn-enviar{
         width: 76px;
     }
     .box .conteudo p{
-        font-size: 14px;
+        font-size: 13px;
     }
 }
 .form-control:disabled, .form-control[readonly]{
