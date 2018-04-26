@@ -68,6 +68,7 @@ export class CartaoComponent implements OnInit {
   public url: string
   public shortUrl: string
   public whatsAppUrl: string
+  public webWhatsAppUrl: string
 
   public imagepload: any
 
@@ -189,8 +190,8 @@ export class CartaoComponent implements OnInit {
                   format: "json"
                 }).done(data => {
                   this.shortUrl = data.shorturl;
-                  console.log(this.shortUrl)
                   this.whatsAppUrl = `whatsapp://send?text=Rommanel%20-%20Mãe%20Presente%20${this.shortUrl}`
+                  this.webWhatsAppUrl = `https://web.whatsapp.com/send?text=Rommanel%20-%20Mãe%20Presente%20${this.shortUrl}`
                   
                 });
 

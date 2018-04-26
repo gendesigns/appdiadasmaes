@@ -208,7 +208,19 @@ section.landscape .btn-enviar{
         width: 100%;
     }
 } */
+.btn-whatsapp-app{
+    display: none !important;
+}
+.btn-whatsapp-web{
+    display: inline-block !important;
+}
 @media screen and (max-width: 39.9375em) {
+    .btn-whatsapp-app{
+        display: inline-block !important;
+    }
+    .btn-whatsapp-web{
+        display: none !important;
+    }
     .cartao{
         width: 100%;
         border-radius: 5px;

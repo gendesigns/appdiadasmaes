@@ -14,7 +14,10 @@
         <a class="btn btn-facebook" (click)="shareFb()">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a [href]="sanitize(whatsAppUrl)" class="btn btn-whatsapp" (click)="shareWhatsApp()" rel="nofollow">
+        <a [href]="sanitize(whatsAppUrl)" class="btn btn-whatsapp btn-whatsapp-app" (click)="shareWhatsApp()" rel="nofollow">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a [href]="sanitize(webWhatsAppUrl)" class="btn btn-whatsapp btn-whatsapp-web" (click)="shareWhatsApp()" rel="nofollow" target="_blank">
           <i class="fab fa-whatsapp"></i>
         </a>
         <div class="form-inline">
