@@ -14,9 +14,9 @@
         <a class="btn btn-facebook" (click)="shareFb()">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="{{ whatsAppUrl }}" target="_blank" class="btn btn-whatsapp" (click)="shareWhatsApp()">
+        <a [href]="sanitize(whatsAppUrl)" class="btn btn-whatsapp" (click)="shareWhatsApp()" rel="nofollow">
           <i class="fab fa-whatsapp"></i>
-        </agit>
+        </a>
         <div class="form-inline">
           <div class="input-group mb-2 mr-sm-2">
            <!--  <div class="input-group-prepend">

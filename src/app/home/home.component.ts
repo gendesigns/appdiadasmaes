@@ -64,6 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   mostrarCartao() {
+    $(document).scrollTop(0);
     // this.estado = 'visivel'
     this.estadoHome = this.estadoHome === 'visivel' ? 'escondido' : 'visivel'
     this.estadoCartao = this.estadoCartao === 'visivel' ? 'escondido' : 'visivel'
