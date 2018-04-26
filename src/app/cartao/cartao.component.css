@@ -198,17 +198,17 @@ section.landscape .btn-enviar{
 [type="radio"]:checked + label:before {
     border: 5px solid #664a90;
 }
-.bg-rommanel{
+/* .bg-rommanel{
     min-width: 1024px;
     width: 100%;
-}
-@media screen and (max-width: 39.9375em) {
+} */
+/* @media screen and (max-width: 39.9375em) {
     .bg-rommanel{
         min-width: 1024px;
         width: 100%;
     }
-}
-/* @media screen and (max-width: 39.9375em) {
+} */
+@media screen and (max-width: 39.9375em) {
     .cartao{
         width: 100%;
         border-radius: 5px;
@@ -217,15 +217,11 @@ section.landscape .btn-enviar{
         background-size: cover; 
         position: relative;
         height: 100%;
+        max-width: 320px;
+        max-height: 568px;
     }
     .bg-rommanel{
-        background-image: none;
-        background-position: center;
-    }
-    .bg-rommanel button.btn-enviar{
-        position: absolute;
-        bottom: 10px;
-        font-size: 10px;
+        background-position: bottom;
     }
     .form-group label{
         text-align: center;
@@ -237,7 +233,16 @@ section.landscape .btn-enviar{
         transform: rotate(2deg);
         padding: 30px 50px;
     }
-} */
+    .box .conteudo img{
+        width: 108px;
+    }
+    .box .conteudo .logo-mobile img{
+        width: 76px;
+    }
+    .box .conteudo p{
+        font-size: 13px;
+    }
+}
 .form-control:disabled, .form-control[readonly]{
     font-size: 15px!important;
     background: transparent!important;

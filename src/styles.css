@@ -87,7 +87,29 @@ button.btn i{
     right: 10px;
 }
 @media screen and (max-width: 39.9375em) {
-    /* .cartao .box{
+    .cartao .box{
         background-image: url('assets/imgs/bg-cartao-mobile.png');
-    } */
+        background-size: contain !important;
+        background-position: top !important;
+    }
+    .cartao1{
+        background-image: url("assets/imgs/bg-cartao-1-mobile.jpg");
+    }
+    .cartao2{
+        background-image: url("assets/imgs/bg-cartao-2-mobile.jpg");
+    }
+    .cartao3{
+        background-image: url("assets/imgs/bg-cartao-3-mobile.jpg");
+    }
+    .cartao4{
+        background-image: url("assets/imgs/bg-cartao-4-mobile.jpg");
+    }
+    .cartao5{
+        background-image: url("assets/imgs/bg-cartao-5-mobile.jpg");
+    }
+    .bg-rommanel button.btn-enviar{
+        position: relative;
+        bottom: 10px;
+        font-size: 10px;
+    }
 }
