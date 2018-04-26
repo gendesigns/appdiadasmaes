@@ -149,7 +149,7 @@ button{
         text-align: left;
     }
     .video{
-        left: -10px;
+        left: auto;
         margin-top: -10px;
         padding: 0px;
     }

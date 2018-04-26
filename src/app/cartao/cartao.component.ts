@@ -21,12 +21,10 @@ declare let $: any
     trigger('shareLinks', [
       state('escondido', style({
         opacity: 0,
-        display:'none',
         'z-index': '-1'
       })),
       state('visivel', style({
         opacity: 1,
-        display:'flex',
         'z-index': '0'
       })),
       transition('escondido <=> visivel', animate('1s ease-in')),

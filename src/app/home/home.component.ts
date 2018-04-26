@@ -1,4 +1,5 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
+import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
 
 declare let $: any
 
@@ -38,7 +39,15 @@ export class HomeComponent implements OnInit {
   public estadoHome: string = 'visivel'
   public estadoCartao: string = 'escondido'
 
-  constructor() { }
+  constructor(private fb: FacebookService) { 
+    let initParams: InitParams = {
+      appId: '315302218998864',
+      xfbml: true,
+      version: 'v2.12'
+    };
+
+    fb.init(initParams);
+  }
 
   ngOnInit() {
     function doOnOrientationChange() {
@@ -58,6 +67,18 @@ export class HomeComponent implements OnInit {
     // this.estado = 'visivel'
     this.estadoHome = this.estadoHome === 'visivel' ? 'escondido' : 'visivel'
     this.estadoCartao = this.estadoCartao === 'visivel' ? 'escondido' : 'visivel'
+  }
+
+  public shareFb() {
+    
+    let params: UIParams = {
+      href: "",
+      method: 'share'
+    };
+
+    this.fb.ui(params)
+      .then((res: UIResponse) => {})
+      .catch((e: any) => {});
   }
 
 }
