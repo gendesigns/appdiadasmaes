@@ -13,6 +13,8 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { FacebookModule } from 'ngx-facebook';
 
+import { FileUploadModule } from 'primeng/components/fileupload/fileupload';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { FacebookModule } from 'ngx-facebook';
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
+    FileUploadModule,
     FacebookModule.forRoot(),
   ],
   providers: [],

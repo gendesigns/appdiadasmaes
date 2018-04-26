@@ -1,12 +1,14 @@
 import { Component, OnInit, Input, trigger, state, style, transition, animate } from '@angular/core';
 import * as html2canvas from "html2canvas";
-import { Cartao } from './cartao.model';
 
 import 'firebase/storage';
 import * as firebase from 'firebase'
 import { Observable } from 'rxjs/Rx'
 
 import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
+
+import { FileUploadModule } from 'primeng/fileupload';
+import {Message} from 'primeng/components/common/api';
 
 
 declare let $: any
@@ -65,11 +67,21 @@ export class CartaoComponent implements OnInit {
   public txtLoader: string;
   public hash: string
   public url: string
+  public shortUrl: string
+  public whatsAppUrl: string
+
+  public imagepload: any
+
+  public msgs: Message[];
+  public uploadedFiles: any[] = [];
 
   @Input() deInput
   @Input() paraInput
 
+  
+
   constructor(private fb: FacebookService) {
+    
     let initParams: InitParams = {
       appId: '315302218998864',
       xfbml: true,
@@ -139,22 +151,24 @@ export class CartaoComponent implements OnInit {
     
     html2canvas(document.querySelector('#cartao'))
       .then((canvas) => {
+        this.imagepload = canvas.toDataURL(); // PNG is the default
+          
 
         canvas.toBlob(blob => {
           let hash = $('#de').val() + $('#para').val() + Date.now()
           let de = $('#de').val()
           let para = $('#para').val()
           let createdAt = Date.now()
-
+          
           const storageRef = firebase.storage().ref();
-          const uploadTask = storageRef.child(`cartao/${btoa(hash)}`).put(blob);
+          const uploadTask = storageRef.child(`cartao/${btoa(hash)}`).put(blob);          
 
           uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
             (snapshot: firebase.storage.UploadTaskSnapshot) => {
               // upload in progress
               const snap = snapshot;
               let progress = (snap.bytesTransferred / snap.totalBytes) * 100
-              console.log('Progresso: ', progress)
+              
             },
             (error) => {
               // upload failed
@@ -165,16 +179,22 @@ export class CartaoComponent implements OnInit {
 
               if (uploadTask.snapshot.downloadURL) {
                 let url = uploadTask.snapshot.downloadURL;
+                
+                this.hash = hash
+                
+                $.getJSON( "http://is.gd/create.php?callback=?", {
+                    url: url,
+                    format: "json"
+                }).done( data => {
+                  this.shortUrl = data.shorturl;
+                });
+                  
                 firebase.database().ref(`cartao/${btoa(hash)}`)
                   .set({ de: de, para: para, imageUrl: url,  shareFacebook: false, shareWhatsApp: false, shareCopyLink: false,  createdAt: createdAt })
                   
-
                   this.titleLoader = 'Prontinho! :)'
                   this.txtLoader = 'Agora você já pode compartilhar o seu cartão.'
 
-                  this.hash = hash
-                  this.url = url
-                  
                   this.stateShareLinks = 'visivel'
 
                 return;
@@ -191,14 +211,15 @@ export class CartaoComponent implements OnInit {
       });
   }
 
-
+  public onBasicUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+  }
   public shareFb() {
     
-    console.log('Hash', this.hash)
-    console.log('Url', this.url)
-
     let params: UIParams = {
-      href: this.url,
+      href: this.shortUrl,
       method: 'share'
     };
 
@@ -214,6 +235,7 @@ export class CartaoComponent implements OnInit {
   }
 
   public shareWhatsApp() {
+    this.whatsAppUrl = `https://web.whatsapp.com/send?text=Rommanel - Mãe Presente ${this.shortUrl}`
     firebase.database().ref(`cartao/${btoa(this.hash)}`)
       .update({ shareWhatsApp: true})
   }

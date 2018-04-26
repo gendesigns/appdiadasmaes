@@ -6,6 +6,7 @@
         <b>{{ titleLoader }}</b>
       </p>
       <p>{{ txtLoader }}</p>
+      
       <div class="share-links" [@shareLinks]="stateShareLinks">
         <a class="btn btn-link" (click)="openForm()">
           <i class="fas fa-link"></i>
@@ -13,8 +14,7 @@
         <a class="btn btn-facebook" (click)="shareFb()">
           <i class="fab fa-facebook-f"></i>
         </a>
-        <a href="https://web.whatsapp.com/send?text=O%20que%20voc%C3%AA%20acha%3F%20https%3A%2F%2Fpin.it%2Fnledssuotwzelz" target="_blank"
-          class="btn btn-whatsapp" (click)="shareWhatsApp()">
+        <a href="{{ whatsAppUrl }}" target="_blank" class="btn btn-whatsapp" (click)="shareWhatsApp()">
           <i class="fab fa-whatsapp"></i>
         </a>
         <div class="form-inline">
@@ -24,7 +24,7 @@
                 <i class="fas fa-link"></i>
               </div>
             </div> -->
-            <input type="text" class="form-control" value="copiar este link" id="share-link">
+            <input type="text" class="form-control" value="{{ this.shortUrl }}" id="share-link">
             <button class="btn btn-primary mb-2" (click)="copyLink()"><i class="fas fa-link"></i></button>
           </div>
         </div>
