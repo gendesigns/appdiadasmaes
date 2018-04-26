@@ -185,6 +185,9 @@ export class CartaoComponent implements OnInit {
                     format: "json"
                 }).done( data => {
                   this.shortUrl = data.shorturl;
+                  console.log(this.shortUrl)
+                  this.whatsAppUrl = `whatsapp://send?text=Rommanel - Mãe Presente ${this.shortUrl}`
+                  
                 });
                   
                 firebase.database().ref(`cartao/${btoa(hash)}`)
@@ -233,7 +236,6 @@ export class CartaoComponent implements OnInit {
   }
 
   public shareWhatsApp() {
-    this.whatsAppUrl = `https://web.whatsapp.com/send?phone=11982353858&text=Rommanel - Mãe Presente ${this.shortUrl}`
     firebase.database().ref(`cartao/${btoa(this.hash)}`)
       .update({ shareWhatsApp: true})
   }
