@@ -28,7 +28,18 @@ declare let $: any
         opacity: 1,
         'z-index': '0'
       })),
-      transition('escondido <=> visivel', animate('1s ease-in')),
+      transition('escondido <=> visivel', animate('1s 3s ease-in')),
+    ]),
+    trigger('btnLoader', [
+      state('escondido', style({
+        opacity: 0,
+        'z-index': '-1'
+      })),
+      state('visivel', style({
+        opacity: 1,
+        'z-index': '0'
+      })),
+      transition('escondido <=> visivel', animate('1s 3s ease-in')),
     ]),
   ]
 })
@@ -54,6 +65,7 @@ export class CartaoComponent implements OnInit {
   public downloadURL: Observable<string>;
 
   public stateShareLinks: string = 'escondido'
+  public stateBtnLoader: string = 'escondido'
 
   public frase;
   public cartao;
@@ -78,8 +90,6 @@ export class CartaoComponent implements OnInit {
   @Input() deInput
   @Input() paraInput
 
-
-
   constructor(private fb: FacebookService, private sanitizer: DomSanitizer) {
 
     let initParams: InitParams = {
@@ -89,9 +99,6 @@ export class CartaoComponent implements OnInit {
     };
 
     fb.init(initParams);
-
-
-
 
   }
 
@@ -202,8 +209,7 @@ export class CartaoComponent implements OnInit {
                 this.txtLoader = 'Agora você já pode compartilhar o seu cartão.'
 
                 this.stateShareLinks = 'visivel'
-
-
+                this.stateBtnLoader = 'visivel'
 
                 return;
               } else {

@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
   public shareFb() {
     
     let params: UIParams = {
-      href: "",
+      href: "https://youtu.be/c1AF1YJTDxI",
       method: 'share'
     };
 
