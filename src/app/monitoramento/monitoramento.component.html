@@ -1,0 +1,69 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li style="width: 100%;">
+        <p style="text-align: center;"><b>MONITORAMENTO APP - DIA DAS MÃES ROMMANEL 2018</b></p>
+      </li>
+    </ol>
+  </nav>
+  <div class="jumbotron">
+    <p style="font-size: 12px; float:left;" [@listItems]="stateListItems">Total de itens: {{ totalItems }}</p>
+    <nav aria-label="Page navigation example">
+      <pagination-controls class="pagination justify-content-end" (pageChange)="p = $event" id="p" maxSize="5" directionLinks="true" autoHide="true"
+        previousLabel="Anterior" nextLabel="Próxima" screenReaderPaginationLabel="Paginação" screenReaderPageLabel="página" screenReaderCurrentLabel="Você está na página">
+      </pagination-controls>
+    </nav>
+    <div class="actions table-dark" [@listItems]="stateListItems">
+      <h4 style="text-align: center; padding:50px 0 35px;">Compartilhamentos: {{ sharedFacebook + sharedWhatsApp + sharedCopyLink }}</h4>
+      <div style="width: 425px; margin: 20px auto;">
+        <span style="width: 200px; color:rgb(10, 130, 243);">Facebook: <b>{{ sharedFacebook }}</b></span>
+        <span style="width: 200px; margin: 0 50px; color:green;">WhatsApp: <b>{{ sharedWhatsApp }}</b></span>
+        <span style="width: 200px; color:red;">Copy Link: <b>{{ sharedCopyLink }}</b></span>
+      </div>
+      <br /><br />
+    </div>
+    
+    <table class="table table-bordered table-hover table-dark table-sm">
+      <caption>Lista de cartões</caption>
+      <thead>
+        <tr>
+          <td>DE:</td>
+          <td>PARA:</td>
+          <td align='center'>FACEBOOK</td>
+          <td align='center'>WHATSAPP</td>
+          <td align='center' width="200">COPY LINK</td>
+          <td align='center'>DATA</td>
+          <td align='center'>IMAGEM</td>
+          <td align='center'>EXCLUIR</td>
+        </tr>
+      </thead>
+      <tbody [@listItems]="stateListItems" >
+        <tr *ngFor="let cartao of cartoes | async | orderBy: '-createdAt' | paginate: { itemsPerPage: 6, currentPage: p, id:'p' } ">
+          <td>{{ cartao.de | ucwords}}</td>
+          <td>{{ cartao.para | ucwords}}</td>
+          <td align='center' style="color:rgb(10, 130, 243);">{{ cartao.shareFacebook }}</td>
+          <td align='center' style="color:green;">{{ cartao.shareWhatsApp}}</td>
+          <td align='center' style="color:red;">{{ cartao.shareCopyLink}}</td>
+          <td align='center'>{{ cartao.createdAt | date: 'dd/MM/yyyy  H:mm'}}</td>
+          <td align='center'><a href="{{ cartao.imageUrl }}" target="_blank"><img src="{{ cartao.imageUrl }}" width="30"></a></td>
+          <td align='center'>
+            <button class="btn btn-danger" style="position:relative; width: 40px;margin: 0 auto;" (click)="deleteItem(cartao.key)">
+              <i class="fas fa-trash" style="margin-left: -7px;"></i></button>
+          </td>
+        </tr>
+      </tbody>
+      <!-- <tfoot>
+        <tr>
+            <td>De</td>
+            <td>Para</td>
+            <td>Shared in Facebook</td>
+            <td>Shared in WhatsApp</td>
+            <td>Shared in Copy Link</td>
+            <td>Data de criação</td>
+            <td>Imagem do cartão</td>
+        </tr>
+      </tfoot> -->
+    </table>
+    
+  </div>
+</div>

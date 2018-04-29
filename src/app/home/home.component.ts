@@ -1,5 +1,8 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { FacebookService, InitParams, UIParams, UIResponse } from 'ngx-facebook';
+import * as firebase from 'firebase';
+import { AngularFireDatabase , AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 declare let $: any
 
@@ -36,16 +39,23 @@ declare let $: any
 })
 export class HomeComponent implements OnInit {
 
+  public items: AngularFireList<any>;
+  public cartoes: Observable<any[]>;
+
   public estadoHome: string = 'visivel'
   public estadoCartao: string = 'escondido'
 
-  constructor(private fb: FacebookService) { 
+  public countShared:number = 0;
+
+  constructor(private fb: FacebookService, private db: AngularFireDatabase) { 
+    
+    this.items = db.list('videoHome');
+
     let initParams: InitParams = {
       appId: '315302218998864',
       xfbml: true,
       version: 'v2.12'
     };
-
     fb.init(initParams);
   }
 
@@ -66,19 +76,32 @@ export class HomeComponent implements OnInit {
   mostrarCartao() {
     $(document).scrollTop(0);
     // this.estado = 'visivel'
-    this.estadoHome = this.estadoHome === 'visivel' ? 'escondido' : 'visivel'
-    this.estadoCartao = this.estadoCartao === 'visivel' ? 'escondido' : 'visivel'
+    let de =  $("#de").val();
+    let para =  $("#para").val();
+    if(de===''&& para===''){
+      $('.bg-loader').css('display', 'block');
+    }else{
+      this.estadoHome = this.estadoHome === 'visivel' ? 'escondido' : 'visivel'
+      this.estadoCartao = this.estadoCartao === 'visivel' ? 'escondido' : 'visivel'
+    }
+    
+  }
+
+  public voltar(){
+    $('.bg-loader').css('display', 'none');
   }
 
   public shareFb() {
-    
     let params: UIParams = {
       href: "https://youtu.be/c1AF1YJTDxI",
       method: 'share'
     };
 
     this.fb.ui(params)
-      .then((res: UIResponse) => {})
+      .then((res: UIResponse) => {
+        this.countShared += 1;
+        this.items.update('sharedFacebook',{shared: this.countShared}) 
+      })
       .catch((e: any) => {});
   }
 

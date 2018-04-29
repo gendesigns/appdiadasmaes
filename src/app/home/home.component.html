@@ -1,4 +1,18 @@
 <app-cartao [deInput]='deInput' [paraInput]='paraInput' [@cartao]="estadoCartao"></app-cartao>
+<div class="bg-loader">
+  <div class="content-loader">
+    <!-- <img src="assets/imgs/Heart-1s-200px.gif" class="heart-loader"> -->
+    <div class="txt-loader">
+      <p>
+        <b>Ops, faltou algo!</b>
+      </p>
+      <p>Ah! Faltou preecher os campos <b>De:</b> e <b>Para:</b>. </p>
+      <p>
+        <button class="btn push-left btn-primary btn-loader" (click)='voltar()' >Voltar</button>
+      </p>
+    </div>
+  </div>
+</div>
 <div class="home" [@home]="estadoHome"> <!--home-->
   <div class="container-fluid"> <!--container-fluid-->
     <div class="row"> <!--row -->
@@ -13,13 +27,13 @@
           <div class="form-group row w-50">
             <label class="col-sm-2 col-form-label">De:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" [(ngModel)]="deInput" required>
+              <input type="text" id="de" class="form-control" [(ngModel)]="deInput" required>
             </div>
           </div>
           <div class="form-group row w-50">
             <label class="col-sm-2 col-form-label">Para:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" [(ngModel)]="paraInput" required>
+              <input type="text" id="para" class="form-control" [(ngModel)]="paraInput" required>
             </div>
           </div>
         </div>
